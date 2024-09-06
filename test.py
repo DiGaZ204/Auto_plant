@@ -6,25 +6,25 @@ def post_data(url, data, retries=3):
         try:
             response = requests.post(url, json=data)
             if response.status_code == 200:
-                print("数据发送成功:", data)
+                print("數據發送成功:", data)
                 response.close()
                 return
             else:
-                print(f"发送数据失败。状态码: {response.status_code}")
+                print(f"發送數據失敗。狀態碼: {response.status_code}")
                 response.close()
         except Exception as e:
-            print(f"连接失败: {e}")
-        time.sleep(1)  # 重试前等待一秒
-    print(f"尝试 {retries} 次后仍未能发送数据")
+            print(f"連接失敗: {e}")
+        time.sleep(1)  # 重試前等待一秒
+    print(f"嘗試 {retries} 次後仍未能發送數據")
 
 def send_custom_data():
     FASTAPI_URL = "https://e554-1-169-79-88.ngrok-free.app"
     sensor_API = FASTAPI_URL + "/blog/sensors/update"
 
-    sensor_id = input("请输入传感器ID: ")
-    moisture = float(input("请输入湿度值: "))
-    temperature = float(input("请输入温度值: "))
-    cycle = int(input("请输入周期值: "))
+    sensor_id = input("請輸入傳感器ID: ")
+    moisture = float(input("請輸入濕度值: "))
+    temperature = float(input("請輸入溫度值: "))
+    cycle = int(input("請輸入週期值: "))
 
     sensor_data = {
         "sensor_id": str(sensor_id),
