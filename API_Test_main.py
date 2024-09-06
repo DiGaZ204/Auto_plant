@@ -1,21 +1,21 @@
 from fastapi import FastAPI
-from router import blog_get
-from router import blog_post
+from router import blog_get, blog_post
 
 app = FastAPI()
 
-# blog_get
+# 包含 GET 路由
 app.include_router(blog_get.router)
 
-# blog_post
+# 包含 POST 路由
 app.include_router(blog_post.router)
 
 @app.get("/")
 def index():
     return {"Hello": "FastAPI"}
 
-# Test:http://192.168.50.16:8000/docs
-# run:uvicorn API_Test_main:app --host 192.168.50.16 --port 8000 --reload
-# get:http://192.168.50.16:8000/blog/soil-moisture/1
-# pi_ip:16->23
-#(ngrok:run):uvicorn API_Test_main:app --host 127.0.0.1 --port 8080 --reload
+"""
+測試：http://192.168.50.16:8000/docs
+運行：uvicorn main:app --host 192.168.50.16 --port 8000 --reload
+樹莓派 IP：16->23
+(ngrok 運行)：uvicorn main:app --host 127.0.0.1 --port 8080 --reload
+"""
