@@ -21,8 +21,9 @@ async def upload_file(file: UploadFile = File(...)):
 # 定義sensor模型
 class SensorDataModel(BaseModel):
     sensor_id: str
-    moisture: Optional[float] = None
+    time: Optional[str] = None  # 新增時間屬性
     temperature: Optional[float] = None
+    moisture: Optional[float] = None
     cycle: Optional[int] = None
 
 sensor_data = {}
@@ -40,8 +41,9 @@ async def update_sensor_data(data: SensorDataModel):
     
     # 更新數據
     sensor_data[data.sensor_id] = {
-        "moisture": data.moisture,
+        "time": data.time,  # 新增時間屬性
         "temperature": data.temperature,
+        "moisture": data.moisture,
         "cycle": data.cycle
     }
     
