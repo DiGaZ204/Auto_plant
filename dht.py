@@ -80,10 +80,13 @@ def post_data(url, data, retries=10):
     print(f"Failed to post data after {retries} attempts")
 
 def send_data(temperature, moisture, sensor_id, cycle):
+    current_time = utime.localtime()
+    formatted_time = f"{current_time[3]:02d}:{current_time[4]:02d}"
     sensor_data = {
         "sensor_id": str(sensor_id),
-        "moisture": moisture,
+        "time": formatted_time,
         "temperature": temperature,
+        "moisture": moisture,
         "cycle": cycle
     }
     sensor_API = FASTAPI_URL + "/blog/sensors/update"
